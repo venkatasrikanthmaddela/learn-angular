@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="MyNumericApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+    <title>Hello Angular</title>
+  </head>
+  <body ng-controller="MyNumericAppController">
+    <div>
+      <input type="text" ng-model="nameString" ng-keyup="getNumericValue();"/>
+      The result of the text is {{totalValue}}
+    </div>
+  </body>
+</html>
