@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MsgApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+<div ng-controller="MsgAppcontroller">
+    {{name}} has a message for you <br>
+    <button ng-click="feedPanda();">Feed Panda</button><br>
+    <img ng-src="images/panda_{{stateOfBeing}}.jpg">
+</div>
+</body>
+</html>
