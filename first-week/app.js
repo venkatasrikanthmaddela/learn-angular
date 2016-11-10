@@ -22,33 +22,53 @@
             }
         });
 
-    // module to convert string into upperCase
+     //module to convert string into upperCase
 
-    //angular.module('DIApp', [])
-    //.controller('DIAppController', DependencyFunction);
-    //
-    //DIAppController.inject = ['$scope', '$filter'];
-    //function DependencyFunction($scope, $filter){
-    //    $scope.name = "srikanthmv";
-    //    $scope.upper = function(){
-    //        var upCase = $filter('uppercase');
-    //        console.log(upCase);
-    //        $scope.name = upCase($scope.name);
-    //        console.log(upCase);
-    //    }
-    //}
+    angular.module('DIApp', [])
+    .controller('DIAppController', DependencyFunction);
 
-    // expressions and introplation
+    DependencyFunction.$inject = ['$scope', '$filter'];
+    function DependencyFunction($scope, $filter){
+        $scope.name = "srikanthmv";
+        $scope.upper = function(){
+            var upCase = $filter('uppercase');
+            console.log(upCase);
+            $scope.name = upCase($scope.name);
+            console.log(upCase);
+        }
+    }
+
+     //expressions and introplation
 
     angular.module('MsgApp', [])
-    .controller('MsgAppcontroller', DisplayMessage);
+    .controller('MsgAppcontroller', DisplayMessage)
+    .filter('loves', 'lovesMessageFilter');
 
     function DisplayMessage($scope){
         $scope.name = "srikanthmv";
         $scope.stateOfBeing = "hungry";
 
+
         $scope.feedPanda = function(){
              $scope.stateOfBeing = "fed"
+        };
+
+        $scope.lovesReplace = function(){
+            var msg = "srikanth likes sri sri poetry";
+            return lovesMessageFilter(msg)
+        };
+
+        $scope.sayMessage = function(){
+            return "srikanth likes sri sri poetry"
+        }
+    }
+
+    function lovesMessageFilter(){
+        return function (input){
+            input = input||"";
+            input = input.relplace("likes", "loves");
+            return input
+
         }
     }
 })();

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CounterApp">
+<head>
+   <script src="angular.js"></script>
+   <script src="app.js"></script>
+</head>
+<body>
+    <h1>The Digest Cycle</h1>
+    <div ng-controller="CounterController">
+         <input type="button" ng-click="upCounter()" value="click here"><br>
+         <p>Incremented Value {{ counter }}</p>
+    </div>
+</body>
+</html>

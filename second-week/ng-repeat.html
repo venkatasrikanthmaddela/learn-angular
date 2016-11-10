@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shoppingListApp">
+<head>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+    <title>Title</title>
+</head>
+<body>
+  <diV ng-controller="shoppingListController">
+       <input type="text" ng-model="shoppingList2[0].quantity"/>
+       <ul>
+           <li ng-repeat="item in shoppingList2">{{$index + 1}}. Buy {{item.quantitiy}} of {{item.name}}(s)</li>
+       </ul>
+
+      <input type="text" placeholder="Item Name" ng-model="newItemName">
+      <input type="text" placeholder="Item Quantity" ng-model="newItemQuantity">
+      <button name="Add-item" ng-click="addNewItem()">Add To List</button>
+  </diV>
+</body>
+</html>
