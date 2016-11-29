@@ -1,42 +1,101 @@
-/**
- * Created by srikanthmv on 26/10/16.
- */
+(function () {
 
-(function (){
-    'use strict';
+'use strict';
 
-    var shoppingItemsList = [
-        {name:'rice', quantity:'5'},
-        {name:'biscuts', quantity:'10'},
-        {name:'cookies', quantity:'15'},
-        {name:'dry furits', quantity:'20'},
-        {name:'pickles', quantity:'25'},
-        {name:'choclates', quantity:'30'},
-        {name:'rolls', quantity:'35'},
-        {name:'burgers', quantity:'40'},
-        {name:'non-veg', quantity:'45'},
-        {name:'biriyani', quantity:'50'}
+angular.module('ShoppingListCheckOff', [])
+  .controller('ToBuyController', ToBuyController)
+  .controller('AlreadyBoughtController', AlreadyBoughtController)
+  .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+
+
+  ToBuyController.$inject = ['ShoppingListCheckOffService'];
+  function ToBuyController(ShoppingListCheckOffService) {
+      var buyList = this;
+      buyList.items = ShoppingListCheckOffService.getItems();
+
+      buyList.buyItem = function (itemIndex) {
+          ShoppingListCheckOffService.removeBuyItem(itemIndex);
+      }
+  }
+
+
+  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+  function AlreadyBoughtController(ShoppingListCheckOffService) {
+      var boughtList = this;
+      boughtList.items = ShoppingListCheckOffService.getBoughtItems();
+
+      boughtList.boughtItem = function (itemIndex) {
+          ShoppingListCheckOffService.removeBoughtItem(itemIndex);
+      }
+  }
+
+
+  function ShoppingListCheckOffService() {
+    var service = this;
+
+    var buyItems = [
+      {
+        name : 'cookies',
+        quantity : 50
+      },
+      {
+        name : 'Biscuits',
+        quantity : 10
+      },
+      {
+        name : 'Ice Cream',
+        quantity : 99
+      },
+      {
+        name : 'Beer',
+        quantity : 1000
+      },
+      {
+        name : 'Biryani',
+        quantity : 5
+      },
+      {
+        name : 'Dresses',
+        quantity : 5
+      },
+      {
+        name : 'Books',
+        quantity : 10
+      },
+      {
+        name : 'Rice',
+        quantity : 15
+      },
+      {
+        name : 'Laptops',
+        quantity : 2
+      },
+      {
+        name : 'Mobile Pouch',
+        quantity : 5
+      }
     ];
 
-    var boughtList = [];
+    var boughtItems = [];
 
-
-    angular.module('checkOffListApp', [])
-        .controller('checkOffListController', checkOffListController);
-
-    checkOffListController.$inject = ['$scope'];
-    function checkOffListController($scope){
-        $scope.toBuyList = shoppingItemsList;
-        $scope.alreadyBought = boughtList;
-
-        $scope.buyItem = function(index){
-            var boughtItemData = {
-                name:$scope.toBuyList[index].name,
-                quantity:$scope.toBuyList[index].quantity
-            };
-            shoppingItemsList.splice(index, 1);
-            boughtList.push(boughtItemData)
-        }
+    service.removeBuyItem = function (itemIndex) {
+        boughtItems.push(buyItems[itemIndex]);
+        buyItems.splice(itemIndex, 1);
     }
+
+    service.removeBoughtItem = function (itemIndex) {
+        buyItems.unshift(boughtItems[itemIndex]);
+        boughtItems.splice(itemIndex, 1);
+    }
+
+    service.getItems = function () {
+        return buyItems;
+    };
+
+    service.getBoughtItems = function () {
+        return boughtItems;
+    }
+
+  }
 
 })();
