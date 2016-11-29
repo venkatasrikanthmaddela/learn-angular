@@ -1,0 +1,11 @@
+<h2 ng-if="menuSearch.found"> List of Menu Items</h2>
+
+<ul class="list-group">
+    <li class="list-group-item"  ng-repeat = "food in menuSearch.found">
+        <h4 class="list-group-item-heading">{{food.name}} - {{food.short_name}}</h4>
+        <span class="badge" ng-click = "menuSearch.removeItem($index);">Don't want this one!</span>
+        {{food.description}}
+    </li>
+</ul>
+
+<div ng-if = "menuSearch.found.length == 0;">Nothing found</div>

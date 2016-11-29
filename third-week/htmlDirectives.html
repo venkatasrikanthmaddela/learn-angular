@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app='shoppingListDirectiveApp'>
+<head>
+    <script type="text/javascript" src="angular.js" ></script>
+    <script type="text/javascript" src="directives.js"></script>
+</head>
+<body>
+<h1>Custom Directives</h1>
+<div ng-controller="ShoppingListAddController1 as list">
+    <h3>Shopping list #1</h3>
+    <input type="text" ng-model="list.itemName" placeholder="item-name">
+    <input type="text" ng-model="list.itemQuantity" placeholder="item-quantity">
+    <button ng-click="list.addItem();">Add Item To Cart</button>
+    <ol>
+       <list-item ng-repeat="item in list.items"></list-item>
+    </ol>
+    <div class="error">Error: {{list.errorMessage}}</div>
+</div>
+
+<div ng-controller="ShoppingListAddController2 as list">
+    <h3>Shopping list #2(max three items)</h3>
+    <input type="text" ng-model="list.itemName" placeholder="item-name">
+    <input type="text" ng-model="list.itemQuantity" placeholder="item-quantity">
+    <button ng-click="list.addItem();">Add Item To Cart</button>
+    <ol>
+     <list-item ng-repeat="item in list.items"></list-item>
+    </ol>
+    <div class="error">Error: {{list.errorMessage}}</div>
+</div>
+
+</body>
+</html>
